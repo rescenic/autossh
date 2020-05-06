@@ -31,6 +31,12 @@ sudo zypper openssh-server (for OpenSUSE Leap WSL)
 
 ```setup ssh port
 * Change SSH Port
+sudo vi /etc/ssh/sshd_config
+Press i to insert text, uncomment Port, and change SSH port
+```
+
+```setup autorun
+* Setup SSH On Startup
 sudo EDITOR=vi visudo 
 Press i to insert text, type or copy-paste the line below, then press ESC, type :wq to save and quit. 
 -----------------------------------
