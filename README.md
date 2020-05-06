@@ -3,8 +3,6 @@ Support for starting SSH services in Windows Subsystem for Linux (WSL) on Window
 For example, I set SSH Port for `Alpine WSL 400`, `Ubuntu WSL 401`, `Debian WSL 402`, and `Kali Linux WSL 403`, `openSUSE Leap WSL 404`.<br/>
 ![sshtest](docs/sshtest.png)
 
-[README](README.md)
-
 ## Table of Contents
 
 * [Installation](#installation)
@@ -19,16 +17,16 @@ git clone https://github.com/rescenic/autossh.git
 * Step 1: Setup OpenSSH Server without password and change SSH port of each Linux WSL in the system.
 ```update wsl
 * Update Linux WSL
-sudo apk update && sudo apk upgrade
-sudo apt-get update && sudo apt-get upgrade
-sudo zypper ref && sudo zypper up
+sudo apk update && sudo apk upgrade (for Alpine WSL)
+sudo apt-get update && sudo apt-get upgrade (for Debian, Kali Linux, Ubuntu WSL)
+sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL)
 ```
 
 ```install openssh-server
 * Install OpenSSH Server
-sudo apk add openssh-server
-sudo apt-get install openssh-server
-sudo zypper openssh-server
+sudo apk add openssh-server (for Alpine WSL)
+sudo apt-get install openssh-server (for Debian, Kali Linux, Ubuntu WSL)
+sudo zypper openssh-server (for OpenSUSE Leap WSL)
 ```
 
 ```setup ssh port
@@ -37,21 +35,21 @@ sudo EDITOR=vi visudo
 Press i to insert text, type or copy-paste the line below, then press ESC, type :wq to save and quit. 
 -----------------------------------
 add this line:
-%sudo ALL=NOPASSWD: /usr/sbin/sshd
+%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine & OpenSUSE Leap WSL)
 or
-%sudo ALL=NOPASSWD: /etc/init.d/ssh
+%sudo ALL=NOPASSWD: /etc/init.d/ssh (for Debian, Kali Linux, Ubuntu WSL)
 ```
 
 ```sshkeys
 * Generate SSH Key
-sudo /usr/bin/ssh-keygen -A
+sudo /usr/bin/ssh-keygen -A 
 ```
 
 ```openssh
 * Start OpenSSH server for the first time
-sudo /usr/sbin/sshd
+sudo /usr/sbin/sshd (for Alpine & OpenSUSE Leap WSL)
 or
-sudo /etc/init.d/ssh start
+sudo /etc/init.d/ssh start (for Debian, Kali Linux, Ubuntu WSL)
 sudo /etc/init.d/ssh won't work, need argument. See:
 ```
 ![sshcoms](docs/sshcoms.png)
