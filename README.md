@@ -1,6 +1,6 @@
 # AutoSSH
 Support for starting SSH services in Windows Subsystem for Linux (WSL) on Windows 10 startup. <br/>
-For example, I set SSH Port for `Alpine WSL 400`, `Ubuntu WSL 401`, `Debian WSL 402`, and `Kali Linux WSL 403`, `openSUSE Leap WSL 404`.<br/>
+For example, I set SSH port number for `Alpine WSL 400`, `Ubuntu WSL 401`, `Debian WSL 402`, `Kali Linux WSL 403`, and `openSUSE Leap WSL 404`.<br/>
 ![sshtest](docs/sshtest.png)
 
 ## Table of Contents
@@ -18,21 +18,23 @@ git clone https://github.com/rescenic/autossh.git
 ```update wsl
 * Update Linux WSL
 sudo apk update && sudo apk upgrade (for Alpine WSL)
-sudo apt-get update && sudo apt-get upgrade (for Debian, Kali Linux, Ubuntu WSL)
+sudo apt-get update && sudo apt-get upgrade (for Ubuntu WSL)
+sudo apt update && sudo apt upgrade (for Debian, Kali Linux)
 sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL)
 ```
 
 ```install openssh-server
 * Install OpenSSH Server
 sudo apk add openssh-server (for Alpine WSL)
-sudo apt-get install openssh-server (for Debian, Kali Linux, Ubuntu WSL)
-sudo zypper openssh-server (for OpenSUSE Leap WSL)
+sudo apt-get install openssh-server (for Ubuntu WSL)
+sudo apt install openssh-server (for Debian, Kali Linux)
+sudo zypper install openssh-server (for OpenSUSE Leap WSL)
 ```
 
-```setup ssh port
-* Change SSH Port
+```setup ssh port number
+* Change SSH Port Number
 sudo vi /etc/ssh/sshd_config
-Press i to insert text, uncomment Port, and change SSH port
+Press i to insert text, uncomment Port, and change SSH port number.
 ```
 
 ```setup autorun
@@ -47,7 +49,7 @@ or
 ```
 
 ```sshkeys
-* Generate SSH Key
+* Generate SSH Keys
 sudo /usr/bin/ssh-keygen -A 
 ```
 
