@@ -52,11 +52,11 @@ sudo /usr/bin/ssh-keygen -A
 sudo /usr/sbin/sshd
 or
 sudo /etc/init.d/ssh start
-sudo /etc/init.d/ssh won't work, need argument. See: <br />
-![sshcoms](docs/sshcoms.png)
+sudo /etc/init.d/ssh won't work, need argument. See:
 ```
+![sshcoms](docs/sshcoms.png)
 
-* Step 2: Add a startup item to the registry: add string key under
+* Step 2: Add a startup item to the registry: add string key under <br />
 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` <br />
 ![regcool](docs/regcool.png)
 
