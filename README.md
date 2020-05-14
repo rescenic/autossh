@@ -28,7 +28,7 @@ sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL)
 sudo apk add openssh-server (for Alpine WSL)
 sudo apt-get install openssh-server (for Ubuntu WSL)
 sudo apt install openssh-server (for Debian, Kali Linux)
-sudo zypper install openssh-server (for OpenSUSE Leap WSL)
+sudo zypper install openssh (for OpenSUSE Leap WSL)
 ```
 
 ```setup ssh port number
@@ -39,7 +39,7 @@ Press i to insert text, uncomment Port, and change SSH port number.
 
 ```setup autorun
 * Setup SSH On Startup
-sudo EDITOR=vi visudo 
+sudo EDITOR=nano visudo
 Press i to insert text, type or copy-paste the line below, then press ESC, type :wq to save and quit. 
 -----------------------------------
 add this line:
