@@ -14,6 +14,9 @@ For example, I set SSH port number for `Alpine WSL 400`, `Ubuntu WSL 401`, `Debi
 ``` shell
 git clone https://github.com/rescenic/autossh.git
 ```
+
+*Step 0: Install sudo and add user to `sudo` group.
+
 * Step 1: Setup OpenSSH Server without password and change SSH port of each Linux WSL in the system.
 ```update wsl
 * Update Linux WSL
@@ -21,6 +24,8 @@ sudo apk update && sudo apk upgrade (for Alpine WSL)
 sudo apt-get update && sudo apt-get upgrade (for Ubuntu WSL)
 sudo apt update && sudo apt upgrade (for Debian, Kali Linux)
 sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL)
+sudo pacman -Syu && sudo pacman -Su for Arch WSL)
+sudo dnf update && sudo dnf upgrade (for RHEL WSL)
 ```
 
 ```install openssh-server
@@ -29,6 +34,8 @@ sudo apk add openssh-server (for Alpine WSL)
 sudo apt-get install openssh-server (for Ubuntu WSL)
 sudo apt install openssh-server (for Debian, Kali Linux)
 sudo zypper install openssh (for OpenSUSE Leap WSL)
+sudo pacman -S openssh xorg-xauth x11-ssh-askpass libfido2 (for Arch WSL)
+dnf install openssh-server (for RHEL WSL)
 ```
 
 ```setup ssh port number
@@ -43,7 +50,9 @@ sudo EDITOR=nano visudo
 Press i to insert text, type or copy-paste the line below, then press ESC, type :wq to save and quit. 
 -----------------------------------
 add this line:
-%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine & OpenSUSE Leap WSL)
+%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine, RHEL, OpenSUSE Leap WSL)
+or
+%sudo ALL=NOPASSWD: /usr/bin/sshd (for Arch WSL)
 or
 %sudo ALL=NOPASSWD: /etc/init.d/ssh (for Debian, Kali Linux, Ubuntu WSL)
 ```
@@ -55,12 +64,15 @@ sudo /usr/bin/ssh-keygen -A
 
 ```openssh
 * Start OpenSSH server for the first time
-sudo /usr/sbin/sshd (for Alpine & OpenSUSE Leap WSL)
+sudo /usr/sbin/sshd (for Alpine, RHEL, OpenSUSE Leap WSL)
+or
+sudo /usr/bin/sshd (for Arch WSL)
 or
 sudo /etc/init.d/ssh start (for Debian, Kali Linux, Ubuntu WSL)
 sudo /etc/init.d/ssh won't work, need argument. See:
 ```
 ![sshcoms](docs/sshcoms.png)
+
 
 * Step 2: Add a startup item to the registry: add string key under <br />
 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` <br />
