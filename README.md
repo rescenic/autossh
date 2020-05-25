@@ -26,35 +26,34 @@ sudo apt update && sudo apt upgrade (for Debian, Kali Linux)
 sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL)
 sudo pacman -Syu && sudo pacman -Su for Arch WSL)
 sudo dnf update && sudo dnf upgrade (for RHEL WSL)
+sudo yum update && sudo yum upgrade (Amazon WSL)
 ```
 
 ```install openssh-server
 * Install OpenSSH Server
 sudo apk add openssh-server (for Alpine WSL)
 sudo apt-get install openssh-server (for Ubuntu WSL)
-sudo apt install openssh-server (for Debian, Kali Linux)
+sudo apt install openssh-server (for Debian WSL, Kali Linux WSL)
 sudo zypper install openssh (for OpenSUSE Leap WSL)
-sudo pacman -S openssh xorg-xauth x11-ssh-askpass libfido2 (for Arch WSL)
+sudo pacman -S --asdeps openssh (for Arch WSL, Artix WSL)
 dnf install openssh-server (for RHEL WSL)
+yum install openssh-server (Amazon WSL)
 ```
 
 ```setup ssh port number
 * Change SSH Port Number
-sudo vi /etc/ssh/sshd_config
-Press i to insert text, uncomment Port, and change SSH port number.
+sudo nano /etc/ssh/sshd_config
+Search #Port 22, uncomment it (remove hash symbol), and change SSH port number to your liking.
 ```
 
 ```setup autorun
 * Setup SSH On Startup
 sudo EDITOR=nano visudo
-Press i to insert text, type or copy-paste the line below, then press ESC, type :wq to save and quit. 
 -----------------------------------
 add this line:
-%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine, RHEL, OpenSUSE Leap WSL)
+%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, RHEL WSL, OpenSUSE Leap WSL)
 or
-%sudo ALL=NOPASSWD: /usr/bin/sshd (for Arch WSL)
-or
-%sudo ALL=NOPASSWD: /etc/init.d/ssh (for Debian, Kali Linux, Ubuntu WSL)
+%sudo ALL=NOPASSWD: /etc/init.d/ssh (for Debian WSL, Kali Linux WSL, Ubuntu WSL)
 ```
 
 ```sshkeys
@@ -64,11 +63,9 @@ sudo /usr/bin/ssh-keygen -A
 
 ```openssh
 * Start OpenSSH server for the first time
-sudo /usr/sbin/sshd (for Alpine, RHEL, OpenSUSE Leap WSL)
+sudo /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, RHEL WSL, OpenSUSE Leap WSL)
 or
-sudo /usr/bin/sshd (for Arch WSL)
-or
-sudo /etc/init.d/ssh start (for Debian, Kali Linux, Ubuntu WSL)
+sudo /etc/init.d/ssh start (for Debian WSL, Kali Linux WSL, Ubuntu WSL)
 sudo /etc/init.d/ssh won't work, need argument. See:
 ```
 ![sshcoms](docs/sshcoms.png)
