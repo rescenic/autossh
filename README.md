@@ -22,11 +22,13 @@ git clone https://github.com/rescenic/autossh.git
 * Update Linux WSL
 sudo apk update && sudo apk upgrade (for Alpine WSL)
 sudo apt-get update && sudo apt-get upgrade (for Ubuntu WSL)
-sudo apt update && sudo apt upgrade (for Debian, Kali Linux)
-sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL)
+sudo apt update && sudo apt upgrade (for Debian WSL, Kali Linux WSL)
+sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL, SLES WSL)
 sudo pacman -Syu && sudo pacman -Su (for Arch WSL)
 sudo dnf update && sudo dnf upgrade (for RHEL WSL)
-sudo yum update && sudo yum upgrade (Amazon WSL)
+sudo yum update && sudo yum upgrade (for Amazon WSL)
+xbps-install -Suv (for Void Linux)
+swupd update (for ClearOS WSL)
 ```
 
 ```install openssh-server
@@ -34,7 +36,7 @@ sudo yum update && sudo yum upgrade (Amazon WSL)
 sudo apk add openssh-server (for Alpine WSL)
 sudo apt-get install openssh-server (for Ubuntu WSL)
 sudo apt install openssh-server (for Debian WSL, Kali Linux WSL)
-sudo zypper install openssh (for OpenSUSE Leap WSL)
+sudo zypper install openssh (for OpenSUSE Leap WSL, SLES WSL)
 sudo pacman -S --asdeps openssh (for Arch WSL, Artix WSL)
 dnf install openssh-server (for CentOS WSL, Fedora WSL, RHEL WSL)
 yum install openssh-server (for Amazon WSL)
@@ -46,6 +48,14 @@ swupd bundle-add openssh-server (for ClearOS WSL)
 * Change SSH Port Number
 sudo nano /etc/ssh/sshd_config
 Search #Port 22, uncomment it (remove hash symbol), and change SSH port number to your liking.
+
+# Logging
+SyslogFacility AUTH
+LogLevel VERBOSE
+#PrintLastLog yes
+
+# override default of no subsystems
+Subsystem       sftp    /usr/lib/ssh/sftp-server -f AUTH -l VERBOSE
 ```
 
 ```setup autorun
@@ -53,7 +63,7 @@ Search #Port 22, uncomment it (remove hash symbol), and change SSH port number t
 sudo EDITOR=nano visudo
 -----------------------------------
 add this line:
-%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, Void WSL)
+%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, SLES WSL, Void WSL)
 or
 %sudo ALL=NOPASSWD: /etc/init.d/ssh (for Debian WSL, Kali Linux WSL, Ubuntu WSL)
 ```
@@ -65,7 +75,7 @@ sudo /usr/bin/ssh-keygen -A
 
 ```openssh
 * Start OpenSSH server for the first time
-sudo /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, Void WSL)
+sudo /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, SLES WSL, Void WSL)
 or
 sudo /etc/init.d/ssh start (for Debian WSL, Kali Linux WSL, Ubuntu WSL)
 sudo /etc/init.d/ssh won't work, need argument. See:
