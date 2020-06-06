@@ -27,7 +27,7 @@ sudo zypper ref && sudo zypper up (for OpenSUSE Leap WSL, SLES WSL)
 sudo pacman -Syu && sudo pacman -Su (for Arch WSL)
 sudo dnf update && sudo dnf upgrade (for RHEL WSL)
 sudo yum update && sudo yum upgrade (for Amazon WSL)
-xbps-install -Suv (for Void Linux)
+xbps-install -Suv (for Void WSL)
 swupd update (for ClearOS WSL)
 ```
 
@@ -40,7 +40,7 @@ sudo zypper install openssh (for OpenSUSE Leap WSL, SLES WSL)
 sudo pacman -S --asdeps openssh (for Arch WSL, Artix WSL)
 dnf install openssh-server (for CentOS WSL, Fedora WSL, RHEL WSL)
 yum install openssh-server (for Amazon WSL)
-xbps-install openssh (for Void Linux)
+xbps-install openssh (for Void WSL)
 swupd bundle-add openssh-server (for ClearOS WSL)
 ```
 
@@ -63,7 +63,7 @@ Subsystem       sftp    /usr/lib/ssh/sftp-server -f AUTH -l VERBOSE
 sudo EDITOR=nano visudo
 -----------------------------------
 add this line:
-%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, SLES WSL, Void WSL)
+%sudo ALL=NOPASSWD: /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Funtoo WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, SLES WSL, Solus WSL, Void WSL)
 or
 %sudo ALL=NOPASSWD: /etc/init.d/ssh (for Debian WSL, Kali Linux WSL, Ubuntu WSL)
 ```
@@ -75,7 +75,7 @@ sudo /usr/bin/ssh-keygen -A
 
 ```openssh
 * Start OpenSSH server for the first time
-sudo /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, SLES WSL, Void WSL)
+sudo /usr/sbin/sshd (for Alpine WSL, Amazon WSL, Arch WSL, Artix WSL, CentOS WSL, ClearOS WSL, Fedora WSL, Funtoo WSL, Gentoo WSL, RHEL WSL, OpenSUSE Leap WSL, SLES WSL, Solus WSL, Void WSL)
 or
 sudo /etc/init.d/ssh start (for Debian WSL, Kali Linux WSL, Ubuntu WSL)
 sudo /etc/init.d/ssh won't work, need argument. See:
